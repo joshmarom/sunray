@@ -9,20 +9,22 @@ export interface Props extends AlertProps {
   isDark?: boolean;
 }
 
-export function TempBadge({ value, isDark, ...badgeProps }: Props) {
+export function TempBadge({ value, isDark = false, ...badgeProps }: Props) {
   const color = pipe(value, Number, tempToColor);
+  const level = isDark ? '4' : '9';
 
   return (
     <Alert
       variant="light"
       {...badgeProps}
-      bg={`${color}.${isDark ? '4' : '9'}`}
+      bg={`${color}.${level}`}
       radius="md"
-      style={() => ({
+      style={{
         padding: 4,
         boxShadow: isDark
-          ? '0 0 5px 3px rgba(0, 0, 0, 0.3)' : '0 0 5px 3px rgba(255, 255, 255, 0.2)',
-      })}
+          ? '0 0 5px 3px rgba(0, 0, 0, 0.3)'
+          : '0 0 5px 3px rgba(255, 255, 255, 0.2)',
+      }}
     >
       <Text fw="bold" ta="center" size="sm" c={`${isDark ? 'dark' : 'white'}`} lh={1}>
         {value}
