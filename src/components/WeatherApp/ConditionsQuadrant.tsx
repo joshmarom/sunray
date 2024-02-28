@@ -5,38 +5,42 @@ import * as React from 'react';
 import { Icon } from '@/icons';
 import { ConditionText, CurrentWeather } from '@/types';
 
+interface QuadItem {
+  icon: ConditionText;
+  label: string | number;
+}
+
 export function ConditionsQuadrant({ current }: { current: CurrentWeather }) {
+  const icons: ReadonlyArray<QuadItem> = [
+    {
+      icon: current.condition.text as ConditionText,
+      label: current.condition.text,
+    },
+    {
+      icon: 'Temperature',
+      label: `${current.temp_c}°`,
+    },
+    {
+      icon: 'Wind',
+      label: current.wind_kph,
+    },
+    {
+      icon: 'Humidity',
+      label: current.humidity,
+    },
+  ] as const;
+
   return (
     <>
       <Title size="h3" mb="lg">Current conditions</Title>
       <SimpleGrid cols={2} spacing="md">
-        {[
-          [
-            <Icon name={current.condition.text as ConditionText} />,
-            <Text>{current.condition.text}</Text>,
-          ],
-          [
-            <Icon name="Temperature" />,
-            <Text>
-              {current.temp_c}
-              °
-            </Text>,
-          ],
-          [
-            <Icon name="Wind" />,
-            <Text>
-              {current.wind_kph}
-              kmh
-            </Text>,
-          ],
-          [
-            <Icon name="Humidity" />,
-            <Text>{current.humidity}</Text>,
-          ],
-        ].map((item, i) => (
-          <Paper key={i} p="md" radius="md" ratio={1} component={AspectRatio}>
+        {icons.map(({ icon, label }) => (
+          <Paper key={icon + label} p="md" radius="md" ratio={1} component={AspectRatio}>
             <Center>
-              <Stack ta="center">{item}</Stack>
+              <Stack ta="center">
+                <Icon name={icon} size="lg" />
+                <Text fz={{ md: 'sm', lg: 'lg' }}>{label}</Text>
+              </Stack>
             </Center>
           </Paper>
         ))}
