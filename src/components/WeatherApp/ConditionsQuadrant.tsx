@@ -24,8 +24,8 @@ export const ConditionsQuadrant = ({ current }: { current: CurrentWeather }) => 
                 <Icon name="Humidity" />,
                 <Text>{current.humidity}</Text>,
             ],
-        ].map((item) => (
-            <Paper p="md" radius="md" ratio={1} component={AspectRatio}>
+        ].map((item, i) => (
+            <Paper key={i} p="md" radius="md" ratio={1} component={AspectRatio}>
                 <Center>
                     <Stack ta="center">{item}</Stack>
                 </Center>

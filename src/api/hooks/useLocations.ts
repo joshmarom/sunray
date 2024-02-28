@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import * as React from 'react';
-import { constUndefined, flow, pipe } from 'fp-ts/function';
+import { flow, pipe } from 'fp-ts/function';
 import * as O from 'fp-ts/Option';
 import * as A from 'fp-ts/ReadonlyArray';
 import LocationsApi from '../locationsApi';
@@ -27,15 +27,24 @@ export interface LocationsHook {
     handleSelectCity: (value: string | null) => void;
 }
 
-export const useLocations = (): LocationsHook => {
+interface useLocationsProps {
+    country?: string | null;
+    city?: string | null;
+}
+
+export const useLocations = ({
+    country: initialCountry = null,
+    city: initialCity = null,
+}: useLocationsProps = {}): LocationsHook => {
     const { data: locationsData, isSuccess: locationsLoaded } = useQuery({
         queryKey: ['locations'],
         queryFn: (): Promise<{ data: LocationsApiResult }> => LocationsApi.get('countries/'),
         select: ({ data }: { data: LocationsApiResult }) => data.data,
     });
 
-    const [country, setCountry] = React.useState<string | null>(null);
-    const [city, setCity] = React.useState<string | null>(null);
+    const [country, setCountry] = React.useState(initialCountry);
+    const [city, setCity] = React.useState(initialCity);
+    const resetCity = React.useCallback(() => setCity(null), []);
 
     const countries = React.useMemo<ReadonlyArray<string>>(() => pipe(
         locationsData,
@@ -63,22 +72,7 @@ export const useLocations = (): LocationsHook => {
         )
     ), [locationsData, country]);
 
-    const handleSelectCountry = React.useCallback<(value: string | null) => void>(
-        flow(
-            O.fromNullable,
-            O.fold(constUndefined, (v) => {
-                setCountry(v);
-                setCity(null);
-            })
-        ), []
-    );
-
-    const handleSelectCity = React.useCallback<(value: string | null) => void>(
-        flow(
-            O.fromNullable,
-            O.fold(constUndefined, setCity)
-        ), []
-    );
+    const handleSelectCountry = React.useCallback(flow(setCountry, resetCity), [resetCity]);
 
     return {
         data: locationsData,
@@ -88,6 +82,6 @@ export const useLocations = (): LocationsHook => {
         country,
         city,
         handleSelectCountry,
-        handleSelectCity,
+        handleSelectCity: setCity,
     };
 };

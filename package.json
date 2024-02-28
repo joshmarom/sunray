@@ -1,6 +1,5 @@
 {
   "name": "weather-app",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -16,7 +15,38 @@
     "vitest": "vitest run",
     "vitest:watch": "vitest"
   },
+  "dependencies": {
+    "@fontsource/days-one": "^5.0.18",
+    "@mantine/core": "7.5.3",
+    "@mantine/hooks": "7.5.3",
+    "@tanstack/react-query": "^5.22.2",
+    "axios": "^1.6.7",
+    "bigdatacloud-reverse-geocoding": "^0.2.0",
+    "chart.js": "^4.4.1",
+    "embla-carousel-react": "^8.0.0-rc23",
+    "faker": "^6.6.6",
+    "fp-ts": "^2.16.2",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "react-inlinesvg": "^4.1.1",
+    "react-json-view-lite": "^1.2.1",
+    "react-router-dom": "^6.21.0",
+    "react-use": "^17.5.0"
+  },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.6",
+    "@storybook/addon-interactions": "^7.6.6",
+    "@storybook/addon-links": "^7.6.6",
+    "@storybook/blocks": "^7.6.6",
+    "@storybook/react": "^7.6.6",
+    "@storybook/react-vite": "^7.6.6",
+    "@storybook/testing-library": "^0.2.2",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
     "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.9.1",
@@ -36,7 +66,9 @@
     "postcss-preset-mantine": "1.13.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.1.1",
-    "sass": "^1.71.0",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.6.6",
+    "storybook-dark-mode": "^3.0.3",
     "stylelint": "^16.0.2",
     "stylelint-config-standard-scss": "^12.0.0",
     "typescript": "^5.3.3",
@@ -44,25 +76,5 @@
     "vite-tsconfig-paths": "^4.2.2",
     "vitest": "^1.1.0"
   },
-  "dependencies": {
-    "@fontsource/days-one": "^5.0.18",
-    "@mantine/carousel": "7.5.2",
-    "@mantine/core": "7.5.3",
-    "@mantine/hooks": "7.5.3",
-    "@tanstack/react-query": "^5.22.2",
-    "axios": "^1.6.7",
-    "bigdatacloud-reverse-geocoding": "^0.2.0",
-    "chart.js": "^4.4.1",
-    "embla-carousel-react": "^8.0.0-rc23",
-    "faker": "^6.6.6",
-    "fp-ts": "^2.16.2",
-    "react": "^18.2.0",
-    "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1",
-    "react-inlinesvg": "^4.1.1",
-    "react-json-view-lite": "^1.2.1",
-    "react-router-dom": "^6.21.0",
-    "react-use": "^17.5.0"
-  }
+  "packageManager": "yarn@4.0.2"
 }
