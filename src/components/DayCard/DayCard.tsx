@@ -26,8 +26,7 @@ const dateData = (date: string | Date) => {
 };
 
 export const DayCard = React.forwardRef<HTMLDivElement, Props>(
-  ({ forecast, ...props }: Props, ref) => {
-    const { date, day } = forecast;
+  ({ forecast: { date, day }, ...props }: Props, ref) => {
     const { weekday, day: dayOfMonth, month } = dateData(date);
     const { maxtemp_c, mintemp_c, condition } = day;
     const { colorScheme } = useMantineColorScheme();

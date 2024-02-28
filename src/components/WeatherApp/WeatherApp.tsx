@@ -12,7 +12,7 @@ import classes from './WeatherApp.module.css';
 import { useHistory } from '@/api/hooks/useHistory';
 import { useWeather } from '@/api/hooks/useWeather';
 import { useForecast, useForecastData } from '@/api/hooks/useForecast';
-import { Chart } from '../LineChart/Chart';
+import { Chart } from '@/components/LineChart/Chart';
 import { useLocations } from '@/api/hooks/useLocations';
 import { useGeoData } from '@/api/hooks/useGeoData';
 import { useChartData, useForecastChartData } from '@/charts';
