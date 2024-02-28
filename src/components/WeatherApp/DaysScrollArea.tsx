@@ -14,7 +14,11 @@ interface Props {
 }
 export function DaysScrollArea({ forecast }: Props) {
   return (
-    <ScrollArea className={classes.scrollArea} py="60" offsetScrollbars scrollbarSize="xs">
+    <ScrollArea
+      className={classes.scrollArea}
+      offsetScrollbars
+      scrollbarSize="xs"
+    >
       <Group gap="sm" wrap="nowrap">
         {pipe(
           forecast,

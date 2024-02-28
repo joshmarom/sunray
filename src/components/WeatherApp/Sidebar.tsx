@@ -1,5 +1,5 @@
 import {
-  AppShell, Box, Button, Group, Select, Stack, Title,
+  AppShell, Button, Group, Select, Stack, Title,
 } from '@mantine/core'
 import * as React from 'react';
 import { VscGithubInverted } from 'react-icons/vsc';
@@ -18,7 +18,7 @@ export function AppSidebar({
 }: LocationsHook) {
   return (
     <AppShell.Navbar className={classes.sidebar}>
-      <Stack m={{ xs: 'md', md: 'lg' }} h="100%" justify="space-between">
+      <Stack m={{ sm: 'xs', md: 'sm' }} h="100%" justify="space-between">
         <Stack gap="md">
           <Title size="h5" c="natural">Pick a Location</Title>
           <Select
@@ -29,20 +29,20 @@ export function AppSidebar({
             onChange={handleSelectCountry}
             disabled={!locationsLoaded}
           />
-          <Select
-            data={cities}
-            searchable
-            placeholder="Select City"
-            value={city}
-            onChange={handleSelectCity}
-            disabled={!country}
-          />
+          {!country
+            ? null
+            : (
+              <Select
+                data={cities}
+                searchable
+                placeholder="Select City"
+                value={city}
+                onChange={handleSelectCity}
+                disabled={!country}
+              />
+            )}
         </Stack>
         <Group gap="md" align="center" c="gray">
-          {
-            // https://github.com/joshmarom/sunray
-          }
-
           <Button
             leftSection={<VscGithubInverted size={24} />}
             component="a"

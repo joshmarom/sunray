@@ -18,6 +18,7 @@ body {
     position: relative;
     margin-inline: auto;
     max-width: min-content;
+    padding-block: 3vh;
 
     &::after {
         right: 0;
@@ -78,6 +79,7 @@ body {
 
 .sidebar {
     background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8));
+    padding: var(--mantine-spacing-md);
 }
 
 .header {

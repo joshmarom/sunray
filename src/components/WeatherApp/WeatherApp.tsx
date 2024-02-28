@@ -11,11 +11,11 @@ import { useDisclosure } from '@mantine/hooks';
 import classes from './WeatherApp.module.css';
 import { useHistory } from '@/api/hooks/useHistory';
 import { useWeather } from '@/api/hooks/useWeather';
-import { useForecast, useForecastData } from '@/api/hooks/useForecast';
+import { useForecast, useForecastData } from '@/api/hooks/useForecast'
 import { Chart } from '@/components/LineChart/Chart';
 import { useLocations } from '@/api/hooks/useLocations';
 import { useGeoData } from '@/api/hooks/useGeoData';
-import { useChartData, useForecastChartData } from '@/charts';
+import { getChartData, getForecastChartData } from '@/charts'
 import { ConditionsQuadrant } from './ConditionsQuadrant';
 import { AppHeader } from './AppHeader';
 import { DaysScrollArea } from '@/components/WeatherApp/DaysScrollArea';
@@ -68,12 +68,12 @@ export function WeatherApp({ location: locationProp }: Props) {
   const current = pipe(
     locationAsString,
     useWeather,
-    ({ data }) => data?.current,
+    ({ data }) => data,
   );
 
   const forecast = useForecast(locationAsString);
-  const forecastChartData = useForecastChartData(forecast);
-  const historyChartData = useForecastChartData(history);
+  const forecastChartData = getForecastChartData(forecast);
+  const historyChartData = getForecastChartData(history);
 
   const dailyChartData = pipe(
     locationAsString,
@@ -82,7 +82,7 @@ export function WeatherApp({ location: locationProp }: Props) {
     O.fromNullable,
     O.map(({ forecast: { forecastday: day } }) => day[0].hour),
     O.getOrElse(A.zero<CurrentWeather>),
-    useChartData,
+    getChartData,
   );
 
   const activeChart = [dailyChartData, forecastChartData, historyChartData][activeChartIndex];

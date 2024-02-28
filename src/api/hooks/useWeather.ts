@@ -1,15 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
-import { getApiKey } from '../../config';
-import weatherApi from '../weatherApi';
-import { WeatherData } from '../../types';
+import { useQuery } from '@tanstack/react-query'
+import { pipe } from 'fp-ts/function'
+import { getApiKey } from '@/config';
+import weatherApi from '@/api/weatherApi';
+import { WeatherData } from '@/types';
 
-export const useWeather = (location: string) =>
-    useQuery<WeatherData>({
-        queryKey: ['weather', location],
-        queryFn: async (): Promise<WeatherData> => {
-            const url = `/current.json?key=${getApiKey()}&q=${location}`;
-            const res = await weatherApi.get<WeatherData>(url);
-
-            return res.data;
-        },
-    });
+export const useWeather = (location: string) => useQuery({
+  queryKey: ['weather', location],
+  queryFn: () => pipe(
+    `/current.json?key=${getApiKey()}&q=${location}`,
+    weatherApi.get<WeatherData>,
+  ),
+  select: ({ data }) => data.current,
+  staleTime: 1000 * 3600,
+});
