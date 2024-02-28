@@ -1,0 +1,87 @@
+body {
+    background-color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+}
+
+.title {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    font-size: rem(48px);
+    font-weight: 900;
+    letter-spacing: rem(-2px);
+
+    @media (max-width: $mantine-breakpoint-md) {
+        font-size: rem(50px);
+    }
+}
+
+.scrollArea {
+    --distance: 0;
+    position: relative;
+
+    &::after {
+        right: 0;
+        --gradient-direction: to left;
+    }
+
+    transition: opacity 0.3s ease;
+    transition-delay: 0.3s;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        display: block;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        pointer-events: none;
+        background: linear-gradient(
+                var(--gradient-direction, to right),
+                light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7)) 5%,
+                transparent 95%
+        ) no-repeat;
+    }
+}
+
+.card {
+    border-radius: var(--mantine-radius-lg);
+    width: 140px;
+    padding-block-end: var(--mantine-spacing-md);
+    margin-block-start: 60px;
+    filter: blur(calc(var(--distance) * 0.15px));
+    background: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8));
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:first-child {
+        margin-inline-start: 48px;
+    }
+    &:nth-child(1) { --distance: 1; }
+    &:nth-child(2) { --distance: 2; }
+    &:nth-child(3) { --distance: 3; }
+    &:nth-child(4) { --distance: 4; }
+    &:nth-child(5) { --distance: 5; }
+    &:nth-child(6) { --distance: 6; }
+    &:nth-child(7) { --distance: 7; }
+    &:nth-child(8) { --distance: 8; }
+    &:nth-child(9) { --distance: 9; }
+    &:nth-child(10) { --distance: 10; }
+
+    &:hover {
+        --distance-from-center: 0;
+        background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-9));
+        filter: blur(0);
+    }
+}
+
+.sidebar {
+    background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-8));
+}
+
+.header {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
+}
+
+.main {
+    background-color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+}
