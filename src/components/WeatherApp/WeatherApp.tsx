@@ -88,7 +88,7 @@ export function WeatherApp({ location: locationProp }: Props) {
   const activeChart = [dailyChartData, forecastChartData, historyChartData][activeChartIndex];
 
   return (
-    <AppShell header={{ height: 64 }} navbar={getSidebarConfig(isNavOpen)} py="sm" px="md">
+    <AppShell header={{ height: 64 }} navbar={getSidebarConfig(isNavOpen)} py="sm" px={{ xs: 0, md: 'md' }}>
       <AppHeader isNavOpen={isNavOpen} onNavToggle={toggleNav} />
       <AppSidebar {...locationHookData} />
       <AppShell.Main className={classes.main}>
