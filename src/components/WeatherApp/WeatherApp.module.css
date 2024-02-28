@@ -16,6 +16,8 @@ body {
 .scrollArea {
     --distance: 0;
     position: relative;
+    margin-inline: auto;
+    max-width: min-content;
 
     &::after {
         right: 0;
@@ -84,4 +86,5 @@ body {
 
 .main {
     background-color: light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+    margin-top: 3vh;
 }

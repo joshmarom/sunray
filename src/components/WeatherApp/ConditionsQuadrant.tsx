@@ -32,8 +32,8 @@ export function ConditionsQuadrant({ current }: { current: CurrentWeather }) {
 
   return (
     <>
-      <Title size="h3" mb="lg">Current conditions</Title>
-      <SimpleGrid cols={2} spacing="md">
+      <Title ta="center" size="h5" mt="md" c="gray">Current conditions:</Title>
+      <SimpleGrid cols={2} spacing="md" mt="xl" maw="400px" mx="auto">
         {icons.map(({ icon, label }) => (
           <Paper key={icon + label} p="md" radius="md" ratio={1} component={AspectRatio}>
             <Center>

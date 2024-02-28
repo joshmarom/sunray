@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as A from 'fp-ts/ReadonlyArray';
 import * as O from 'fp-ts/Option';
 import {
-  Title, Group, AppShell, Container, Grid, GridCol, SegmentedControl,
-} from '@mantine/core';
+  Title, Group, AppShell, Container, Grid, GridCol, SegmentedControl, Stack,
+} from '@mantine/core'
 import { useGeolocation } from 'react-use';
 import { flow, pipe } from 'fp-ts/function';
 import { useDisclosure } from '@mantine/hooks';
@@ -114,7 +114,7 @@ export function WeatherApp({ location: locationProp }: Props) {
                   { label: 'History', value: '2' },
                 ]}
               />
-              <Chart data={activeChart} width={800} height={400} />
+              <Chart data={activeChart} width={800} height={500} />
             </GridCol>
             <GridCol span={{ sm: 12, md: 4 }}>
               {current ? <ConditionsQuadrant current={current} /> : null}
