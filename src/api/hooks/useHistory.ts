@@ -29,11 +29,11 @@ const getLast7Days = () => Array.from({ length: 7 }, (_, index) => {
 const queryFn = async ({ queryKey }: QueryProps): Promise<WithForecast> => pipe(
   queryKey,
   parseUrl,
-        weatherApi.get<WithForecast>,
-        async (response) => {
-          const { data } = await response;
-          return data;
-        },
+  weatherApi.get<WithForecast>,
+  async (res) => {
+    const { data } = await res;
+    return data;
+  },
 );
 
 export const useHistoryQuery = (
