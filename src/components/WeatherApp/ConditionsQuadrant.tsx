@@ -4,6 +4,8 @@ import {
 import * as React from 'react';
 import { Icon } from '@/icons';
 import { ConditionText, CurrentWeather } from '@/types';
+// @ts-ignore
+import classes from './ConditionsQuadrant.module.css';
 
 interface QuadItem {
   icon: ConditionText;
@@ -42,7 +44,9 @@ export const ConditionsQuadrant = React.memo(({ current }: { current: CurrentWea
 
   return (
     <>
-      <Title ta="center" size="h5" mt="md" c="gray">Current conditions:</Title>
+      <Title ta="center" size="h5" mt="md" c="gray">
+        Current conditions:
+      </Title>
       <SimpleGrid cols={2} spacing="md" mt="xl" maw="400px" mx="auto">
         {icons.map(({ icon, label }) => (
           <Paper
@@ -52,6 +56,7 @@ export const ConditionsQuadrant = React.memo(({ current }: { current: CurrentWea
             ratio={1}
             component={AspectRatio}
             withBorder
+            className={classes.conditionTile}
           >
             <Center>
               <Stack ta="center">

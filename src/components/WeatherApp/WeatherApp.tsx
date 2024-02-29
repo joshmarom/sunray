@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as A from 'fp-ts/ReadonlyArray';
 import * as O from 'fp-ts/Option';
 import {
-  Title, Group, AppShell, Container, Grid, GridCol, SegmentedControl, Stack,
+  Title, Group, AppShell, Container, Grid, GridCol, SegmentedControl,
 } from '@mantine/core'
 import { useGeolocation } from 'react-use';
 import { flow, pipe } from 'fp-ts/function';
